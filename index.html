@@ -1,159 +1,719 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO Improvements for Clients and Employers -->
-    <!-- Specific Title with Name and Role -->
-    <title>Mark Recio - Data Consulting & Analytics | Analyzeo</title>
-    
-    <!-- Meta Description: A brief, compelling summary for clients and recruiters. -->
-    <meta name="description" content="Mark Recio provides expert data consulting and analytics through Analyzeo. Specializing in Python, Power BI, and SQL, I help businesses and employers achieve data-driven growth and solve complex problems.">
-    
-    <!-- New Keywords Meta Tag for Search Engines -->
-    <meta name="keywords" content="data consultant, business analyst, data analytics, business intelligence, predictive modeling, data science, Python, R, SQL, Power BI, Tableau, freelance data consultant, business growth, data strategy, business optimization, Mark Recio">
-
-    <!-- Social Media Meta Tags for professional sharing -->
-    <meta property="og:title" content="Mark Recio - Data Consulting & Analytics | Analyzeo">
-    <meta property="og:description" content="Expert data consulting for businesses. Specializing in data analytics, business intelligence, predictive modeling, and more to help you make data-driven decisions.">
-    <meta property="og:url" content="https://markreciopro.github.io/website/#">
-    <meta property="og:type" content="website">
-
-    <!-- Structured Data (JSON-LD) for Business Details -->
-    <!-- This helps search engines understand what your business is. -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "Analyzeo Data Consulting by Mark Recio",
-      "image": "https://i.ibb.co/4whnWLjQ/Mark-Recio-Picture.jpg",
-      "telephone": "+1-702-714-8551",
-      "email": "analyzeo@proton.me",
-      "url": "https://markreciopro.github.io/website/#",
-      "priceRange": "$$$"
-    }
-    </script>
-    
-    <!-- Tailwind CSS CDN for styling -->
+    <title>Analyzeo - Your Partner in Data-Driven Growth</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        /* Base Styles */
+        body {
+            font-family: 'Roboto Mono', monospace;
+            overflow-x: hidden;
+            background-color: #0d0f1b;
+            color: #E0E8E1;
+        }
+
+        /* Utility Classes */
+        .job-title-highlight {
+            color: #9FDF32;
+        }
+
+        .text-action {
+            color: #00A3FF;
+            font-weight: 500;
+        }
+
+        /* Section Card Styles with Glassmorphism Effect */
+        .section-card {
+            background-color: rgba(29, 31, 46, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(159, 223, 50, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s ease-in-out;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .section-card.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-header {
+            color: #9FDF32;
+            border-bottom: 2px solid #00A3FF;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-card {
+            background-color: rgba(29, 31, 46, 0.6);
+            border: 1px solid rgba(159, 223, 50, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .project-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-color: #00A3FF;
+        }
+
+        /* Back to Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(45deg, #00A3FF, #9FDF32);
+            color: #0d0f1b;
+            padding: 0.75rem 1rem;
+            border-radius: 9999px;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        #back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Contact Form */
+        .form-input {
+            width: 100%;
+            background-color: rgba(15, 17, 28, 0.5);
+            border: 1px solid rgba(159, 223, 50, 0.2);
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            color: #E0E8E1;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #00A3FF;
+        }
+
+        .submit-btn {
+            background: linear-gradient(90deg, #9FDF32, #00A3FF);
+            color: #0d0f1b;
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 163, 255, 0.3);
+        }
+
+        /* Video Frame Styling for a better responsive design */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Navbar */
+        .sticky-nav {
+            background-color: rgba(13, 15, 27, 0.8);
+        }
+
+        /* New Animated Canvas Background */
+        #animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background-color: #0d0f1b;
+        }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-800 antialiased">
 
-    <!-- Semantic Header -->
-    <header class="bg-white shadow-md rounded-b-xl">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="https://markreciopro.github.io/website/#" class="text-2xl font-bold text-gray-900">Mark Recio</a>
-            <div class="hidden md:flex space-x-6">
-                <a href="#about" class="text-gray-600 hover:text-gray-900 transition-colors duration-300">About</a>
-                <a href="#skills" class="text-gray-600 hover:text-gray-900 transition-colors duration-300">Skills</a>
-                <a href="#case-studies" class="text-gray-600 hover:text-gray-900 transition-colors duration-300">Case Studies</a>
-                <a href="#contact" class="text-gray-600 hover:text-gray-900 transition-colors duration-300">Contact</a>
-            </div>
+<body class="bg-[#0d0f1b] text-[#E0E8E1]">
+
+    <canvas id="animated-bg"></canvas>
+
+    <a href="#top" id="back-to-top" class="hidden md:block">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </a>
+
+    <div class="container mx-auto p-4 sm:p-6 md:p-8 lg:p-10 relative z-10">
+
+        <nav id="navbar"
+            class="sticky top-0 bg-transparent backdrop-blur-sm rounded-xl shadow-lg p-4 mb-8 flex flex-wrap justify-center z-50 transition-colors duration-300">
+            <a href="#about" class="text-gray-400 hover:text-[#9FDF32] font-medium mx-2 sm:mx-4 my-1 transition-colors"
+                aria-label="About section">Proposal Cover Letter</a>
+            <a href="#skills" class="text-gray-400 hover:text-[#9FDF32] font-medium mx-2 sm:mx-4 my-1 transition-colors"
+                aria-label="Skills section">Skills</a>
+            <a href="#projects" class="text-gray-400 hover:text-[#9FDF32] font-medium mx-2 sm:mx-4 my-1 transition-colors"
+                aria-label="Projects section">Projects</a>
+            <a href="#experience" class="text-gray-400 hover:text-[#9FDF32] font-medium mx-2 sm:mx-4 my-1 transition-colors"
+                aria-label="Experience section">Experience</a>
+            <a href="#contact"
+                class="text-gray-400 hover:text-[#9FDF32] font-medium mx-2 sm:mx-4 my-1 transition-colors"
+                aria-label="Contact section">Contact</a>
         </nav>
-    </header>
-
-    <!-- Semantic Main Content -->
-    <main class="container mx-auto px-6 py-12">
-        
-        <!-- Hero Section -->
-        <section class="text-center mb-12">
-            <!-- Main heading using h1 tag for professional branding -->
-            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
-                Data Consultant & Business Analyst
+        <header class="text-center py-16" id="top">
+            <h1 id="hero-title"
+                class="text-4xl sm:text-5xl md:text-6xl font-bold text-[#E0E8E1] leading-tight opacity-0 transform translate-y-4 transition-all duration-700">
+                <span class="job-title-highlight">Analyzeo</span> <span class="text-action">()</span>
             </h1>
-            <p class="mt-4 text-lg text-gray-600">
-                Helping businesses leverage data for strategic growth and efficiency.
+            <p id="hero-subtitle"
+                class="text-lg sm:text-xl text-gray-400 mt-4 max-w-2xl mx-auto opacity-0 transform translate-y-4 transition-all duration-700 delay-200">
+                Your partner in data-driven <span class="text-action font-bold">growth</span>.
             </p>
-            <a href="#contact" class="mt-8 inline-block px-8 py-3 bg-blue-600 text-white font-semibold rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300">
-                Contact for Projects or Opportunities
-            </a>
+        </header>
+
+        <section id="about" class="section-card">
+            <h2 class="text-2xl font-bold section-header">The Legend of Analyzeo</h2>
+            <div
+                class="video-container my-4 flex justify-center items-center w-full max-w-3xl mx-auto rounded-xl shadow-lg overflow-hidden">
+                <iframe src="https://www.youtube.com/embed/dlmxMXboKkE"
+                    title="The Legend of Analyzeo - A data story." allow="encrypted-media"
+                    allowfullscreen></iframe>
+            </div>
+            <div class="text-[#E0E8E1] leading-relaxed mt-4">
+                <p class="text-lg font-semibold text-center mb-4">Our partnership, forged in the heart of data.</p>
+                <section id="proposal" class="section-card">
+                    <h2 class="text-2xl font-bold section-header">Our Proposal</h2>
+                    <div class="text-[#E0E8E1] leading-relaxed mt-4 space-y-6">
+                        <p>
+                            <span class="text-action font-semibold">Subject:</span> Data-Driven Growth Proposal from Analyzeo()
+                        </p>
+                        <p>
+                            Dear Hiring Manager,
+                        </p>
+                        <p>
+                            My name is Mark Recio, and I am a data and business intelligence analyst. I am writing to you today not with a resume, but with a proposal for a strategic partnership. Having reviewed your company's work and mission, I am confident that our collective, Analyzeo(), can provide the analytical firepower needed to address your most critical business challenges and drive meaningful growth.
+                        </p>
+                        <h3 class="text-xl font-bold text-[#E0E8E1] mb-2">Our Understanding of the Challenge</h3>
+                        <p>
+                            Modern businesses often operate in a digital landscape brimming with data, yet this information is frequently fragmented and underutilized. This can lead to hidden inefficiencies, missed opportunities, and a lack of clear strategic direction. I understand the need for a partner who can cut through the noise, organize disparate data sources, and turn them into actionable insights that directly impact your bottom line.
+                        </p>
+                        <h3 class="text-xl font-bold text-[#E0E8E1] mb-2">Our Proposed Solution</h3>
+                        <p>
+                            As demonstrated by the projects and services outlined on my website (Analyzeo.online), our approach is to leverage a full suite of analytical tools to empower your decision-making. I propose a phased partnership that begins with a comprehensive diagnostic assessment of your current data processes and business goals.
+                        </p>
+                        <ul class="list-disc list-inside space-y-2 text-[#E0E8E1] text-sm pl-4">
+                            <li><strong>Business Intelligence & Dashboarding:</strong> Building a dynamic, real-time "Strategic Compass" (as showcased in our Power BI project) that provides a clear, 360-degree view of your key performance indicators.</li>
+                            <li><strong>Deep-Dive Data Analytics:</strong> Uncovering hidden cost centers and revenue opportunities, similar to the insights we provided in the Avoxi Billing Analysis. We will use advanced analytics to identify trends, expose discrepancies, and optimize profitability.</li>
+                            <li><strong>Predictive Modeling:</strong> Developing tailored models to forecast future outcomes, such as employee attrition (our HR Analytics project) or market shifts, allowing you to proactively manage risk and capitalize on new opportunities.</li>
+                        </ul>
+                        <h3 class="text-xl font-bold text-[#E0E8E1] mb-2">The Analyzeo() Advantage</h3>
+                        <p>
+                            Our expertise in Python, SQL, Power BI, and Advanced Excel is not just a list of skills—it's an arsenal of solutions designed to solve real-world problems. We don't just provide data; we provide the cunning tactical intelligence needed to turn that data into a clear path forward for your business.
+                        </p>
+                        <h3 class="text-xl font-bold text-[#E0E8E1] mb-2">Next Steps</h3>
+                        <p>
+                            I am eager to discuss this proposal further and explore how our services can be specifically tailored to your needs. Please let me know a time that works for a brief discovery call.
+                        </p>
+                        <p class="mt-8 text-right">
+                            Sincerely,<br>
+                            Mark Recio<br>
+                            (702) 714-7389<br>
+                            analyzeo@proton.me<br>
+                        </p>
+                    </div>
+                    <div class="mt-8 text-center">
+                        <a href="https://markreciopro.github.io/website/" target="_blank"
+                            class="inline-block bg-[#FF073A] text-[#0E161B] font-semibold py-2 px-6 rounded-full transition-transform duration-300 hover:scale-105">
+                            Access Website
+                        </a>
+                    </div>
+                </section>
+                </article>
+            </div>
         </section>
 
-        <!-- About Section -->
-        <section id="about" class="bg-white p-8 rounded-xl shadow-lg mb-12">
-            <!-- h2 for a major section heading -->
-            <h2 class="text-3xl font-bold text-center mb-6">About Mark Recio</h2>
-            <div class="md:flex md:items-center">
-                <img src="https://i.ibb.co/4whnWLjQ/Mark-Recio-Picture.jpg" 
-                     class="w-full md:w-1/3 rounded-lg mb-4 md:mb-0 md:mr-6" 
-                     alt="A professional portrait of Mark Recio, a data consultant and founder of Analyzeo."
-                     onerror="this.onerror=null;this.src='https://placehold.co/400x300/e2e8f0/1a202c?text=Mark+Recio';">
-                <div class="md:w-2/3">
-                    <p class="mt-4 text-gray-700 leading-relaxed">
-                        I am Mark Recio, a dedicated data consultant specializing in transforming raw data into clear, actionable insights for small and mid-sized businesses. Through Analyzeo, my mission is to help companies make smarter, data-driven decisions that lead to tangible results. My expertise lies in leveraging powerful tools and strategic analysis to solve complex business problems.
+        <section id="skills" class="section-card">
+            <h2 class="text-2xl font-bold section-header">Core Competencies</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+                <div class="project-card p-6 rounded-xl">
+                    <h3 class="text-xl font-semibold text-[#00A3FF]">Business Analysis</h3>
+                    <ul class="list-disc list-inside mt-2 text-sm text-gray-300 space-y-1">
+                        <li>Strategic Planning</li>
+                        <li>Project Coordination</li>
+                        <li>Executive Reporting</li>
+                    </ul>
+                </div>
+                <div class="project-card p-6 rounded-xl">
+                    <h3 class="text-xl font-semibold text-[#00A3FF]">Data & HR Analytics</h3>
+                    <ul class="list-disc list-inside mt-2 text-sm text-gray-300 space-y-1">
+                        <li>Predictive Modeling</li>
+                        <li>Data Visualization</li>
+                        <li>Performance Metrics</li>
+                    </ul>
+                </div>
+                <div class="project-card p-6 rounded-xl">
+                    <h3 class="text-xl font-semibold text-[#00A3FF]">Operations</h3>
+                    <ul class="list-disc list-inside mt-2 text-sm text-gray-300 space-y-1">
+                        <li>Process Improvement</li>
+                        <li>Workflow Optimization</li>
+                        <li>Payroll Coordination</li>
+                    </ul>
+                </div>
+                <div class="project-card p-6 rounded-xl">
+                    <h3 class="text-xl font-semibold text-[#00A3FF]">Technology</h3>
+                    <ul class="list-disc list-inside mt-2 text-sm text-gray-300 space-y-1">
+                        <li>Python</li>
+                        <li>R</li>
+                        <li>SQL</li>
+                        <li>Power BI</li>
+                        <li>Tableau</li>
+                        <li>Advanced Excel</li>
+                        <li>Visual Studio</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section-card">
+            <h2 class="text-2xl font-bold section-header">Featured Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+                <div class="project-card p-6 rounded-xl">
+                    <h3 class="text-xl font-semibold text-[#E0E8E1]"><i class="fas fa-chart-bar text-[#00A3FF]"></i> Strategic Compass (Power BI Dashboard)</h3>
+                    <p class="text-sm text-gray-300 mt-2">
+                        A dynamic, real-time dashboard providing a 360-degree view of key performance indicators across HR, marketing, and campaigns.
+                    </p>
+                </div>
+                <div class="project-card p-6 rounded-xl">
+                    <h3 class="text-xl font-semibold text-[#E0E8E1]"><i class="fas fa-search-dollar text-[#9FDF32]"></i> Avoxi Billing Analysis</h3>
+                    <p class="text-sm text-gray-300 mt-2">
+                        In-depth data analysis to uncover hidden cost centers and identify revenue opportunities, optimizing profitability through actionable insights.
+                    </p>
+                </div>
+                <div class="project-card p-6 rounded-xl">
+                    <h3 class="text-xl font-semibold text-[#E0E8E1]"><i class="fas fa-user-friends text-[#E0E8E1]"></i> HR Analytics (Predictive Modeling)</h3>
+                    <p class="text-sm text-gray-300 mt-2">
+                        Development of a predictive model to forecast employee attrition, allowing for proactive management and resource allocation.
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- Skills & Expertise Section (Crucial for employers) -->
-        <section id="skills" class="mb-12">
-            <h2 class="text-3xl font-bold text-center mb-6">Skills & Expertise</h2>
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-                <div class="bg-white p-4 rounded-xl shadow-sm text-center font-semibold">Python</div>
-                <div class="bg-white p-4 rounded-xl shadow-sm text-center font-semibold">R</div>
-                <div class="bg-white p-4 rounded-xl shadow-sm text-center font-semibold">SQL</div>
-                <div class="bg-white p-4 rounded-xl shadow-sm text-center font-semibold">Power BI</div>
-                <div class="bg-white p-4 rounded-xl shadow-sm text-center font-semibold">Tableau</div>
-                <div class="bg-white p-4 rounded-xl shadow-sm text-center font-semibold">Advanced Excel</div>
-                <div class="bg-white p-4 rounded-xl shadow-sm text-center font-semibold">Business Intelligence</div>
-                <div class="bg-white p-4 rounded-xl shadow-sm text-center font-semibold">Predictive Modeling</div>
-            </div>
-        </section>
-
-        <!-- Case Studies Section - Modified to highlight quantifiable results -->
-        <section id="case-studies" class="mb-12">
-            <h2 class="text-3xl font-bold text-center mb-6">Chronicles of Victory</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 class="text-xl font-semibold mb-2">Increased Profitability by 15%</h3>
-                    <p class="text-gray-700">
-                        Analyzed financial data for a small business, identifying key cost centers and revenue opportunities. The strategic recommendations led to a 15% increase in profitability within six months.
-                    </p>
+        <section id="experience" class="section-card">
+            <h2 class="text-2xl font-bold section-header">Professional Experience</h2>
+            <div class="space-y-8 mt-4">
+                <div class="project-card p-6 rounded-xl">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                        <div>
+                            <h3 class="text-xl font-semibold text-[#E0E8E1]">Analyzeo (Independent Contractor)</h3>
+                            <p class="text-sm text-[#9FDF32]">Data Analyst / BI Consultant | Aug 2023 - Present</p>
+                        </div>
+                        <p class="text-sm text-gray-400 mt-2 sm:mt-0">Las Vegas, NV</p>
+                    </div>
+                    <ul class="list-disc list-inside mt-4 text-sm text-gray-300 space-y-2">
+                        <li>Designed and deployed interactive **Power BI** dashboards for HR, marketing, and campaign insights.</li>
+                        <li>Applied **Python** and **R** for predictive modeling to improve recruitment strategies and workforce allocation.</li>
+                        <li>Developed forecasting models to identify business trends and optimize resource distribution.</li>
+                    </ul>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 class="text-xl font-semibold mb-2">Optimized HR Processes, Saving 100+ Hours</h3>
-                    <p class="text-gray-700">
-                        Developed an HR analytics dashboard using Python and Power BI that streamlined recruitment and performance tracking. The solution saved the HR team over 100 hours annually in manual data analysis.
-                    </p>
+
+                <div class="project-card p-6 rounded-xl">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                        <div>
+                            <h3 class="text-xl font-semibold text-[#E0E8E1]">Bella Brite Services</h3>
+                            <p class="text-sm text-[#9FDF32]">Operations Manager Assistant | Oct 2018 - Aug 2023</p>
+                        </div>
+                        <p class="text-sm text-gray-400 mt-2 sm:mt-0">Las Vegas, NV</p>
+                    </div>
+                    <ul class="list-disc list-inside mt-4 text-sm text-gray-300 space-y-2">
+                        <li>Managed staffing, scheduling, and event operations using **Microsoft 365** for teams of 10-50 employees.</li>
+                        <li>Assisted with payroll, compliance, and executive reporting using **Excel** and automated templates.</li>
+                        <li>Analyzed performance metrics to drive efficiency improvements and reduce costs.</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="bg-blue-600 text-white p-8 rounded-xl shadow-lg text-center">
-            <h2 class="text-3xl font-bold mb-4">Connect for Your Next Project</h2>
-            <p class="text-lg mb-6">
-                Whether you're a business needing data solutions or an employer with a new opportunity, let's talk.
-            </p>
-            <div class="flex flex-col items-center space-y-4">
-                <a href="mailto:analyzeo@proton.me" class="px-8 py-3 bg-white text-blue-600 font-semibold rounded-full shadow-lg hover:bg-gray-200 transition-colors duration-300">
-                    Email Me: analyzeo@proton.me
-                </a>
-                <a href="tel:7027148551" class="px-8 py-3 bg-white text-blue-600 font-semibold rounded-full shadow-lg hover:bg-gray-200 transition-colors duration-300">
-                    Call Me: (702) 714-8551
-                </a>
-                <p class="mt-4 text-gray-200">
-                    You can also access my portfolio directly at:
-                    <a href="https://markreciopro.github.io/website/#contact" class="block text-white underline font-bold hover:text-gray-200 transition-colors duration-300 mt-1">
-                        https://markreciopro.github.io/website/#contact
-                    </a>
-                </p>
+        <section id="education" class="section-card">
+            <h2 class="text-2xl font-bold section-header">Education & Certifications</h2>
+            <div class="space-y-4 mt-4">
+                <div>
+                    <h3 class="text-xl font-semibold text-[#E0E8E1]">Education</h3>
+                    <ul class="list-disc list-inside mt-2 text-sm text-gray-300 space-y-1">
+                        <li>**MBA**, Keller Graduate School of Management - Fremont, CA</li>
+                        <li>**Graduate Certificate**, Strategic Innovation & Change - University of Denver, CO</li>
+                        <li>**B.S., Technical Management**, DeVry University, Fremont, CA</li>
+                    </ul>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <h3 class="text-xl font-semibold text-[#E0E8E1]">Certifications</h3>
+                        <ul class="list-disc list-inside mt-2 text-sm text-gray-300 space-y-1">
+                            <li>Google Data Analytics</li>
+                            <li>IBM Data Science Professional</li>
+                            <li>Microsoft Power BI Data Analyst Associate</li>
+                            <li>Tableau Business Intelligence Analyst</li>
+                            <li>Business Analytics - Univ. of Illinois (Coursera)</li>
+                            <li>Accounting Data Analytics - Univ. of Illinois (Coursera)</li>
+                            <li>Finance Data Analytics - Univ. of Illinois (Coursera)</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </section>
 
-    </main>
+        <section id="heros-journey" class="section-card">
+            <h2 class="section-header">The Hero's Journey in Data</h2>
+            <p class="text-center text-[#E0E8E1] mb-6">Let "Our" hero journey be together to achieve impactful results and
+                overcome challenges in this real world.</p>
+            <div
+                class="video-container my-4 flex justify-center items-center w-full max-w-3xl mx-auto rounded-xl shadow-lg overflow-hidden">
+                <iframe src="https://www.youtube.com/embed/SvF9vh7TmfM"
+                    title="The Hero's Journey - A video on data insights." allow="encrypted-media"
+                    allowfullscreen></iframe>
+            </div>
+        </section>
 
-    <!-- Semantic Footer -->
-    <footer class="bg-gray-900 text-gray-400 py-6 mt-12 rounded-t-xl">
-        <div class="container mx-auto text-center px-6">
-            <p>&copy; 2025 Mark Recio. All Rights Reserved.</p>
-        </div>
-    </footer>
+        <section id="contact" class="section-card">
+            <h2 class="section-header">Contact Us</h2>
+            <p class="text-center text-[#E0E8E1] mb-6">Let's connect and transform your data into growth. Send us a
+                message!</p>
+            <form id="contactForm" class="space-y-4 max-w-xl mx-auto">
+                <input type="text" id="name" name="name" placeholder="Your Name"
+                    class="form-input transition-colors duration-200" required>
+                <input type="email" id="email" name="email" placeholder="Your Email"
+                    class="form-input transition-colors duration-200" required>
+                <textarea id="message" name="message" rows="5" placeholder="Your Message"
+                    class="form-input transition-colors duration-200" required></textarea>
+                <div class="relative flex items-center justify-center">
+                    <button type="submit"
+                        class="w-full submit-btn relative z-10">
+                        Send Message
+                    </button>
+                    <div id="loading-spinner" class="absolute hidden w-6 h-6 border-2 border-white border-b-transparent rounded-full animate-spin"></div>
+                    <svg id="success-checkmark" class="absolute h-6 w-6 text-[#9FDF32] hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                </div>
+                <div id="status-message" class="mt-4 text-center text-sm font-semibold hidden"></div>
+            </form>
+        </section>
 
+        <footer class="text-center py-8 text-sm text-gray-500">
+            &copy; 2024 Analyzeo. All rights reserved.
+        </footer>
+    </div>
+    <script>
+        // Hero title and subtitle animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroTitle = document.getElementById('hero-title');
+            const heroSubtitle = document.getElementById('hero-subtitle');
+            if (heroTitle && heroSubtitle) {
+                heroTitle.classList.remove('opacity-0', 'translate-y-4');
+                heroTitle.classList.add('opacity-100', 'translate-y-0');
+                heroSubtitle.classList.remove('opacity-0', 'translate-y-4');
+                heroSubtitle.classList.add('opacity-100', 'translate-y-0');
+            }
+        });
+        // Intersection Observer for section cards
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.section-card').forEach(card => {
+            observer.observe(card);
+        });
+        // Back to top button functionality
+        const backToTopBtn = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+        backToTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        // Canvas animation logic for the background
+        const canvas = document.getElementById('animated-bg');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        const resizeCanvas = () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        };
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        const dataLakeCount = 10;
+        const dataLakes = [];
+        const pulses = [];
+
+        function getRandomColor() {
+            const colors = ['#9FDF32', '#00A3FF', '#E0E8E1'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+        // Represents a single floating data node
+        class DataNode {
+            constructor(parentLake, index) {
+                this.parent = parentLake;
+                this.index = index;
+                const angle = Math.random() * Math.PI * 2;
+                this.distanceFromCenter = (this.parent.size / 3) + (Math.random() * (this.parent.size / 2));
+                this.x = Math.cos(angle) * this.distanceFromCenter;
+                this.y = Math.sin(angle) * this.distanceFromCenter;
+                this.radius = Math.random() * 1.5 + 0.5;
+                this.vx = (Math.random() - 0.5) * 0.3;
+                this.vy = (Math.random() - 0.5) * 0.3;
+                this.color = this.parent.color;
+            }
+            update() {
+                // Chaotic movement relative to the parent lake
+                this.x += this.vx;
+                this.y += this.vy;
+                const distFromCenter = Math.sqrt(this.x * this.x + this.y * this.y);
+                if (distFromCenter > this.parent.size * 0.8) {
+                    this.vx *= -1;
+                    this.vy *= -1;
+                }
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.parent.x + this.x, this.parent.y + this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = 1;
+                ctx.fill();
+            }
+        }
+        // Represents the main floating "data lake" cluster
+        class DataLake {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.2;
+                this.vy = (Math.random() - 0.5) * 0.2;
+                this.size = Math.random() * 100 + 100;
+                this.color = getRandomColor();
+                this.nodes = [];
+                const nodeCount = 50;
+                for (let i = 0; i < nodeCount; i++) {
+                    this.nodes.push(new DataNode(this, i));
+                }
+                this.pulseRadius = 0;
+                this.pulseMaxRadius = this.size * 1.2;
+                this.label = null;
+            }
+            update() {
+                // Move the entire lake
+                this.x += this.vx;
+                this.y += this.vy;
+                // Wrap around the screen
+                if (this.x < 0 - this.size) this.x = width + this.size;
+                if (this.x > width + this.size) this.x = 0 - this.size;
+                if (this.y < 0 - this.size) this.y = height + this.size;
+                if (this.y > height + this.size) this.y = 0 - this.size;
+                this.nodes.forEach(node => node.update());
+                // Update pulse radius
+                this.pulseRadius += 0.5;
+                if (this.pulseRadius > this.pulseMaxRadius) {
+                    this.pulseRadius = 0;
+                }
+            }
+            draw() {
+                // Draw the internal connections
+                const connectionDistance = 80;
+                for (let i = 0; i < this.nodes.length; i++) {
+                    for (let j = i + 1; j < this.nodes.length; j++) {
+                        const dist = Math.sqrt(Math.pow(this.nodes[i].x - this.nodes[j].x, 2) + Math.pow(this.nodes[i].y - this.nodes[j].y, 2));
+                        if (dist < connectionDistance) {
+                            ctx.beginPath();
+                            ctx.moveTo(this.x + this.nodes[i].x, this.y + this.nodes[i].y);
+                            ctx.lineTo(this.x + this.nodes[j].x, this.y + this.nodes[j].y);
+                            ctx.strokeStyle = `rgba(159, 223, 50, ${0.5 - dist / connectionDistance})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.stroke();
+                        }
+                    }
+                }
+                // Draw the nodes
+                this.nodes.forEach(node => node.draw());
+                // Draw the pulse effect
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.pulseRadius, 0, Math.PI * 2);
+                ctx.strokeStyle = `rgba(159, 223, 50, ${1 - (this.pulseRadius / this.pulseMaxRadius)})`;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                // Draw the core of the lake
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 5, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = 0.8;
+                ctx.fill();
+                // Draw the "DATA LAKE" label
+                if (this.label) {
+                    ctx.fillStyle = '#E0E8E1';
+                    ctx.font = "14px 'Roboto Mono', monospace";
+                    ctx.textAlign = "center";
+                    ctx.textBaseline = "middle";
+                    ctx.globalAlpha = 1;
+                    ctx.fillText(this.label, this.x, this.y);
+                }
+            }
+        }
+        // Initialize data lakes
+        for (let i = 0; i < dataLakeCount; i++) {
+            dataLakes.push(new DataLake());
+        }
+        // Assign the "DATA LAKE" label to two random, distinct lakes
+        let lake1Index = Math.floor(Math.random() * dataLakes.length);
+        let lake2Index = Math.floor(Math.random() * dataLakes.length);
+        while (lake2Index === lake1Index) {
+            lake2Index = Math.floor(Math.random() * dataLakes.length);
+        }
+        dataLakes[lake1Index].label = "DATA LAKE";
+        dataLakes[lake2Index].label = "DATA LAKE";
+        // Represents a dramatic blast pulse for the background
+        class BlastingPulse {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.radius = 0;
+                this.maxRadius = Math.random() * 200 + 100;
+                this.opacity = 1;
+                this.speed = Math.random() * 2 + 1;
+                this.color = '#00A3FF';
+            }
+            update() {
+                this.radius += this.speed;
+                this.opacity = 1 - (this.radius / this.maxRadius);
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.strokeStyle = this.color;
+                ctx.globalAlpha = this.opacity;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+        }
+        function createBlastingPulse() {
+            if (dataLakes.length > 0) {
+                const randomLake = dataLakes[Math.floor(Math.random() * dataLakes.length)];
+                pulses.push(new BlastingPulse(randomLake.x, randomLake.y));
+            }
+        }
+        setInterval(createBlastingPulse, 15000);
+
+        function draw() {
+            ctx.clearRect(0, 0, width, height);
+            // Draw connections between nearby data lakes
+            const lakeConnectionDistance = 300;
+            for (let i = 0; i < dataLakes.length; i++) {
+                dataLakes[i].update();
+                for (let j = i + 1; j < dataLakes.length; j++) {
+                    const lakeA = dataLakes[i];
+                    const lakeB = dataLakes[j];
+                    const dist = Math.sqrt(Math.pow(lakeA.x - lakeB.x, 2) + Math.pow(lakeA.y - lakeB.y, 2));
+                    if (dist < lakeConnectionDistance) {
+                        ctx.beginPath();
+                        ctx.moveTo(lakeA.x, lakeA.y);
+                        ctx.lineTo(lakeB.x, lakeB.y);
+                        ctx.strokeStyle = `rgba(0, 163, 255, ${0.5 - dist / lakeConnectionDistance})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                }
+            }
+            // Draw the data lakes themselves
+            dataLakes.forEach(lake => lake.draw());
+            // Draw pulses
+            for (let i = pulses.length - 1; i >= 0; i--) {
+                pulses[i].update();
+                pulses[i].draw();
+                if (pulses[i].opacity <= 0) {
+                    pulses.splice(i, 1);
+                }
+            }
+            requestAnimationFrame(draw);
+        }
+        draw();
+
+        // Contact form handling for mailto
+        const contactForm = document.getElementById('contactForm');
+        const statusMessage = document.getElementById('status-message');
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+
+        contactForm.addEventListener('submit', function(e) {
+            // Prevent the default form submission
+            e.preventDefault();
+
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            // Simple validation
+            if (!name || !email || !message) {
+                statusMessage.textContent = 'Please fill out all fields.';
+                statusMessage.classList.remove('hidden', 'text-[#9FDF32]', 'text-gray-400');
+                statusMessage.classList.add('text-red-500');
+                return;
+            }
+
+            // Construct the mailto link
+            const subject = encodeURIComponent("Inquiry from Analyzeo Website");
+            const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+            const mailtoUrl = `mailto:analyzeo@proton.me?subject=${subject}&body=${body}`;
+
+            // Provide user feedback
+            statusMessage.textContent = 'Opening your email client...';
+            statusMessage.classList.remove('hidden', 'text-[#9FDF32]', 'text-red-500');
+            statusMessage.classList.add('text-gray-400');
+
+            // Open the mailto link
+            window.location.href = mailtoUrl;
+
+            // Reset the form after a short delay
+            setTimeout(() => {
+                statusMessage.classList.add('hidden');
+                contactForm.reset();
+            }, 3000);
+        });
+    </script>
 </body>
-</html>
+
+</html
