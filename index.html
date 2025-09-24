@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en" class="scroll-smooth">
 
 <head>
@@ -676,17 +676,16 @@
         const contactForm = document.getElementById('contactForm');
         const statusMessage = document.getElementById('status-message');
         const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const successCheckmark = document.getElementById('success-checkmark');
 
         contactForm.addEventListener('submit', function(e) {
-            // Prevent the default form submission
             e.preventDefault();
 
-            // Get form values
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const message = document.getElementById('message').value;
 
-            // Simple validation
             if (!name || !email || !message) {
                 statusMessage.textContent = 'Please fill out all fields.';
                 statusMessage.classList.remove('hidden', 'text-[#9FDF32]', 'text-gray-400');
@@ -694,26 +693,42 @@
                 return;
             }
 
+            // Show loading state
+            submitBtn.classList.add('hidden');
+            loadingSpinner.classList.remove('hidden');
+            statusMessage.textContent = 'Opening your email client...';
+            statusMessage.classList.remove('hidden', 'text-red-500');
+            statusMessage.classList.add('text-gray-400');
+            
             // Construct the mailto link
             const subject = encodeURIComponent("Inquiry from Analyzeo Website");
             const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
             const mailtoUrl = `mailto:analyzeo@proton.me?subject=${subject}&body=${body}`;
 
-            // Provide user feedback
-            statusMessage.textContent = 'Opening your email client...';
-            statusMessage.classList.remove('hidden', 'text-[#9FDF32]', 'text-red-500');
-            statusMessage.classList.add('text-gray-400');
+            // Try to open the mailto link
+            try {
+                window.location.href = mailtoUrl;
 
-            // Open the mailto link
-            window.location.href = mailtoUrl;
+                // Show success state after a brief delay
+                setTimeout(() => {
+                    loadingSpinner.classList.add('hidden');
+                    successCheckmark.classList.remove('hidden');
+                    statusMessage.textContent = 'Email draft opened successfully. Please check your email client!';
+                    statusMessage.classList.remove('text-gray-400');
+                    statusMessage.classList.add('text-[#9FDF32]');
+                }, 1000);
 
-            // Reset the form after a short delay
-            setTimeout(() => {
-                statusMessage.classList.add('hidden');
-                contactForm.reset();
-            }, 3000);
+            } catch (error) {
+                // Handle cases where mailto fails (e.g., no email client configured)
+                loadingSpinner.classList.add('hidden');
+                submitBtn.classList.remove('hidden');
+                statusMessage.textContent = 'Could not open email client. Please email us directly at analyzeo@proton.me';
+                statusMessage.classList.remove('text-gray-400');
+                statusMessage.classList.add('text-red-500');
+                console.error("Mailto link failed to open:", error);
+            }
         });
     </script>
 </body>
 
-</html
+</html>
